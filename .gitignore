@@ -1,7 +1,7 @@
 # Node.js
 node_modules/
 
-# document folder
+# document folder md files
 docs/
 
 # IDE/editor files
