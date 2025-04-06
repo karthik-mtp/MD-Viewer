@@ -1,0 +1,9 @@
+# Node.js
+node_modules/
+
+# document folder
+docs/
+
+# IDE/editor files
+.vscode/
+.idea/
