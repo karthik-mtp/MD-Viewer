@@ -196,7 +196,7 @@
   #main {
     transition: margin-left 0.4s;
     margin-left: 20%;
-    margin-right: 20%;
+    margin-right: 15%;
     background-color: var(--bg-color);
     color: var(--font-color);
   }
