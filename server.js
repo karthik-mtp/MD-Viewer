@@ -131,7 +131,8 @@ async function scanDirectory(dir) {
           path: relativePath,
           children,
         };
-      } else if (path.extname(item.name).toLowerCase() === ".md") {
+      } else if ( path.extname(item.name).toLowerCase() === ".md" || 
+      path.extname(item.name).toLowerCase() === ".txt") {
         return {
           type: "file",
           name: item.name,
@@ -149,7 +150,19 @@ async function scanDirectory(dir) {
 app.get(baseURI + "api/files", async (req, res) => {
   try {
     const fileStructure = await scanDirectory(rootDir);
-    res.json(fileStructure);
+
+    const sortedItems = fileStructure.sort((a, b) => {
+      if (a.type === 'file' && b.type === 'directory') {
+        return -1;  // a (file) comes before b (directory)
+      }
+      if (a.type === 'directory' && b.type === 'file') {
+        return 1;  // a (directory) comes after b (file)
+      }
+      return 0;  // if both are files or both are directories, leave order unchanged
+    });
+    console.log(sortedItems);
+    
+    res.json(sortedItems);
   } catch (error) {
     console.error("Error scanning directory:", error);
     res.status(500).json({ error: "Failed to scan directory" });

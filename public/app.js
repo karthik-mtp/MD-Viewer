@@ -266,8 +266,8 @@
   }
   
   function openNav() {
-    document.getElementById("mySidebar").style.width = "15%";
-    document.getElementById("main").style.marginLeft = "15%";
+    document.getElementById("mySidebar").style.width = "20%";
+    document.getElementById("main").style.marginLeft = "20%";
   }
   
   function closeNav() {
@@ -522,6 +522,17 @@
       
       fileStructure = await response.json();
       renderFileTree(fileStructure);
+      if (fileStructure && fileStructure.length > 0) {
+        // Find the first item with type 'file'
+        const firstFile = fileStructure.find(item => item.type === 'file');
+        
+        // If a file is found, load it
+        if (firstFile) {
+          loadFile(firstFile);
+        }
+      }
+      
+      
     } catch (error) {
       console.error('Error fetching file structure:', error);
       handleError?.(); // Call handleError if it exists
