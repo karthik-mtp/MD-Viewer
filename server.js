@@ -160,7 +160,7 @@ app.get(baseURI + "api/files", async (req, res) => {
       }
       return 0;  // if both are files or both are directories, leave order unchanged
     });
-    console.log(sortedItems);
+    
     
     res.json(sortedItems);
   } catch (error) {
