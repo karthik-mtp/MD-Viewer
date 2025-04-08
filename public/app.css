@@ -238,7 +238,7 @@
   
   .checkbox-label {
     background-color: #111;
-    width: 50px;
+    /* width: 50px; */
     height: 26px;
     border-radius: 50px;
     position: relative;
@@ -251,6 +251,7 @@
   
   .moon {
     color: #00e1ff;
+    display: none;
   }
   
   .sun {
