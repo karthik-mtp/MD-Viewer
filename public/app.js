@@ -219,7 +219,7 @@
       <label for="chkthemechanger" class="checkbox-label">
         <i class="moon">${svg.moon}</i>
         <i class="sun">${svg.sun}</i>
-        <span class="ball"></span>
+        
       </label>`;
   }
   
@@ -244,8 +244,17 @@
   }
   
   // Toggle between light and dark themes
-  const toggleTheme = () => 
-    setTheme(localStorage.getItem("theme") === "theme-dark" ? "theme-light" : "theme-dark");
+  function toggleTheme() {
+    var newTheme = localStorage.getItem("theme") === "theme-dark" ? "theme-light" : "theme-dark"
+    if (newTheme === "theme-light") {
+      document.querySelector('.moon').style.display = 'block';
+      document.querySelector('.sun').style.display = 'none';
+    } else {
+      document.querySelector('.moon').style.display = 'none';
+      document.querySelector('.sun').style.display = 'block';
+    }
+    setTheme(newTheme);
+  }
   
   // Apply theme from localStorage
   function ApplyThemeFromLS() {
