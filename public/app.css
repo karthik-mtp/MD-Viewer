@@ -84,7 +84,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 3rem;
-  font-size: 20px; /* Changed from 14px to set the base font size */
+  font-size: 16px; /* Changed from 14px to set the base font size */
 }
 
 body {
