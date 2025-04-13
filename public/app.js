@@ -887,6 +887,30 @@
       }
     );
   }
+
+  function Zoom(){
+    const zoomInButton = document.getElementById("zoomIn");
+    const zoomOutButton = document.getElementById("zoomOut");
+    const html = document.querySelector("html");
+
+    let currentZoom = localStorage.getItem("zoom") || '16';
+
+    html.style.fontSize = `${currentZoom}px`;
+ 
+
+    zoomInButton.addEventListener("click", () => {
+      currentZoom = parseInt(currentZoom) + 1;
+      html.style.fontSize = `${currentZoom}px`;
+      localStorage.setItem("zoom", currentZoom);
+    });
+
+    zoomOutButton.addEventListener("click", () => {
+      currentZoom = parseInt(currentZoom) - 1;
+      html.style.fontSize = `${currentZoom}px`;
+      localStorage.setItem("zoom", currentZoom);
+      
+    });
+  }
   
   /******************************************************************************
    * Application Initialization
@@ -898,7 +922,14 @@
   const bodyHtml = `
   <div class="header">
     <div id="divheadertitle"></div>
-    <div id="divthemeswitch"></div>
+    <div class="header-right"> 
+      <div id="divthemeswitch"></div>
+      <div class="divZoom">
+      <div style="    display: flex;    gap: .2rem;">
+        <button id="zoomIn" title="Zoom In" class="zoom-button"><i class="fas fa-plus"></i></button>
+        <button id="zoomOut" title="Zoom Out" class="zoom-button"><i class="fas fa-minus"></i></button>
+      </div> </div>
+    </div>
   </div>
   <div id="mySidebar" class="sidebar">
     <div id="side"></div>
@@ -909,8 +940,10 @@
     <md></md>
   </div>
   <div id="mySidebarright" class="rightsidebar"></div>
-  <a href="javascript:" id="backtotop"><i></i></a>`;
-  
+  <button   id="backtotop"><i class="fas fa-caret-up"></i></button>`;
+
+  // Add event listeners for zoom buttons
+   
   /**
    * Initialize the application when DOM is ready
    */
@@ -923,6 +956,7 @@
     buildSwitch();
     ApplyThemeFromLS();
     ApplyScrolling();
+    Zoom();
     
     try {
       // Load actual configuration
